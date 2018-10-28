@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorActivityBackground"
+    android:orientation="vertical"
     tools:context=".activities.AddTasksActivity">
 
     <include
@@ -15,56 +15,106 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/taskNameCard"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_16dp"
-        android:layout_marginTop="@dimen/size_16dp"
-        android:layout_marginEnd="@dimen/size_16dp"
-        app:cardCornerRadius="@dimen/size_4dp">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <EditText
-            android:id="@+id/taskNameEditText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/size_10dp"
-            android:background="@color/colorWhite"
-            android:fontFamily="@font/noto_sans_regular"
-            android:hint="Task Name"
-            android:inputType="text"
-            android:textSize="@dimen/text_size_14" />
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
 
-    </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/taskNameCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_16dp"
+                android:layout_marginTop="@dimen/size_16dp"
+                android:layout_marginEnd="@dimen/size_16dp"
+                app:cardCornerRadius="@dimen/size_4dp">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/commentsRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_16dp"
-        android:layout_marginStart="@dimen/size_16dp"
-        android:layout_marginEnd="@dimen/size_16dp" />
+                <EditText
+                    android:id="@+id/taskNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/size_10dp"
+                    android:background="@color/colorWhite"
+                    android:fontFamily="@font/noto_sans_regular"
+                    android:hint="Task Name"
+                    android:inputType="text"
+                    android:textSize="@dimen/text_size_14" />
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/taskCommentCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_16dp"
-        android:layout_marginStart="@dimen/size_16dp"
-        android:layout_marginEnd="@dimen/size_16dp"
-        app:cardCornerRadius="@dimen/size_4dp">
+            </android.support.v7.widget.CardView>
 
-        <EditText
-            android:id="@+id/taskCommentEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/size_10dp"
-            android:background="@color/colorWhite"
-            android:fontFamily="@font/noto_sans_regular"
-            android:hint="Comment"
-            android:inputType="text"
-            android:textSize="@dimen/text_size_14" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/commentsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_16dp"
+                android:layout_marginTop="@dimen/size_16dp"
+                android:layout_marginEnd="@dimen/size_16dp"
+                android:visibility="gone" />
 
-    </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/taskCommentCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_16dp"
+                android:layout_marginTop="@dimen/size_16dp"
+                android:layout_marginEnd="@dimen/size_16dp"
+                app:cardCornerRadius="@dimen/size_4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <EditText
+                        android:id="@+id/taskCommentEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/size_10dp"
+                        android:layout_weight="85"
+                        android:background="@color/colorWhite"
+                        android:fontFamily="@font/noto_sans_regular"
+                        android:hint="Comment"
+                        android:inputType="text"
+                        android:textSize="@dimen/text_size_14" />
+
+                    <TextView
+                        android:id="@+id/addCommentButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="@dimen/size_16dp"
+                        android:layout_weight="15"
+                        android:fontFamily="@font/noto_sans_bold"
+                        android:gravity="center"
+                        android:text="Add"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_size_16" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <Button
+                android:id="@+id/saveTaskButton"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_38dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/size_16dp"
+                android:background="@drawable/button_background"
+                android:paddingStart="@dimen/size_16dp"
+                android:paddingEnd="@dimen/size_16dp"
+                android:text="save task"
+                android:textColor="@color/colorWhite" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

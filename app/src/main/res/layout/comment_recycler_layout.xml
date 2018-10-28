@@ -5,11 +5,14 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/taskName"
+        android:id="@+id/comment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_margin="@dimen/size_16dp"
+        android:layout_margin="@dimen/size_8dp"
+        android:layout_marginBottom="@dimen/size_8dp"
+        android:layout_marginStart="@dimen/size_16dp"
+        android:layout_marginEnd="@dimen/size_16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,12 +20,5 @@
         android:fontFamily="@font/noto_sans_regular"
         android:textSize="@dimen/text_size_16" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/size_point_5dp"
-        android:background="@color/colorGrey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

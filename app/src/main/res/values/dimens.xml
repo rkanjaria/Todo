@@ -9,6 +9,8 @@
     <dimen name="size_12dp">12dp</dimen>
     <dimen name="size_14dp">14dp</dimen>
     <dimen name="size_16dp">16dp</dimen>
+    <dimen name="size_32dp">32dp</dimen>
+    <dimen name="size_38dp">38dp</dimen>
 
     <!-- Text Size -->
     <dimen name="text_size_16">16sp</dimen>
