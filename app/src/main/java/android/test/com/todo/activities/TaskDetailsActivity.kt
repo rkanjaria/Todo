@@ -6,8 +6,8 @@ import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.test.com.todo.R
@@ -16,7 +16,6 @@ import android.test.com.todo.fragments.TimePickerFragment
 import android.test.com.todo.getDbInsatance
 import android.test.com.todo.helper.*
 import android.test.com.todo.showMessage
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TimePicker
@@ -78,7 +77,7 @@ class TaskDetailsActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
     }
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        val calendar = Calendar.getInstance();
+        val calendar = Calendar.getInstance()
         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
         calendar.set(Calendar.MINUTE, minute)
         calendar.set(Calendar.SECOND, 0)
@@ -90,11 +89,13 @@ class TaskDetailsActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
         val intent = Intent(this, ReminderReceiver::class.java)
         intent.putExtra(TITLE, "Did you complete your task?")
         intent.putExtra(MESSAGE, task?.getString(TASK_NAME))
+        intent.putExtra(ID, task?.id)
         val pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0)
         if (calendar.before(Calendar.getInstance())) { // if we select the time which is already passed the notification will fire the next day at selected time
             calendar.add(Calendar.DATE, 1)
         }
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+        showMessage("Reminder set for ${calendar.get(Calendar.HOUR_OF_DAY)} hours and ${calendar.get(Calendar.MINUTE)} minutes")
     }
 
     fun showProgressBar() {
@@ -107,8 +108,19 @@ class TaskDetailsActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            android.R.id.home -> super.onBackPressed()
+            android.R.id.home -> onBackPressed()
         }
         return true
+    }
+
+    override fun onBackPressed() {
+        if (intent.getBooleanExtra(FROM_NOTIFICATION, false)) {
+            val homeIntent = Intent(this, HomeActivity::class.java)
+            homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(homeIntent)
+            finish()
+        } else {
+            super.onBackPressed()
+        }
     }
 }

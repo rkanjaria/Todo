@@ -8,7 +8,7 @@ class ReminderReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
         if (intent != null) {
             val notificationHelper = NotificationHelper(context)
-            val notificationBuilder = notificationHelper.getReminderChannelNotification(intent.getStringExtra(TITLE), intent.getStringExtra(MESSAGE))
+            val notificationBuilder = notificationHelper.getReminderChannelNotification(intent)
             notificationHelper.getNoificationManager().notify(1, notificationBuilder.build())
         }
     }
